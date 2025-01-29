@@ -1,0 +1,70 @@
+:root {
+  --hamburger-color: black;
+  --hamburger-scale: 10;
+  /*
+  * Adjust the scale here when in CodePen.
+  * In your own project, set the width and height directly in the SVG tag.
+  */
+  --hamburger-transition-duration: 0.7s;
+  --hamburger-transition-delay: 0.2s;
+}
+
+div {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-menu {
+  cursor: pointer;
+  transform: scale(var(--hamburger-scale));
+  transition: transform var(--hamburger-transition-duration);
+}
+
+.hamburger-stroke {
+  transition: stroke-dasharray var(--hamburger-transition-duration), stroke-dashoffset var(--hamburger-transition-duration);
+  stroke: var(--hamburger-color);
+  stroke-width: 4;
+  stroke-linecap: round;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.hamburger-menu .hamburger-top {
+  stroke-dasharray: 23 140;
+  transition-delay: var(--hamburger-transition-delay);
+}
+
+.hamburger-menu.active .hamburger-top {
+  stroke-dashoffset: -135px;
+  transition-delay: var(--hamburger-transition-delay);
+}
+
+.hamburger-menu .hamburger-middle {
+  stroke-dasharray: 23;
+  transition-delay: var(--hamburger-transition-delay);
+}
+
+.hamburger-menu.active .hamburger-middle {
+  stroke-dashoffset: 23;
+  stroke: black;
+  animation: hamburger-middle-invisible var(--hamburger-transition-duration) linear forwards;
+}
+
+.hamburger-menu .hamburger-bottom {
+  stroke-dasharray: 23 140;
+}
+
+.hamburger-menu.active .hamburger-bottom {
+  stroke-dashoffset: -134px;
+}
+
+@keyframes hamburger-middle-invisible {
+  85% {
+    stroke: var(--hamburger-color);
+  }
+  100% {
+    stroke: transparent;
+  }
+}
+
